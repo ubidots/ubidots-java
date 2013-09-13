@@ -26,4 +26,8 @@ class ApiObject {
 	Integer getAttributeInteger(String name) {
 		return (Integer) raw.get(name);
 	}
+	
+	String getId() {
+		return (String) raw.get("id");
+	}
 }

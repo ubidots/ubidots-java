@@ -3,10 +3,8 @@ package com.ubidots;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -122,9 +120,9 @@ public class ServerBridge {
 	}
 
 	/**
-	 * 
-	 * @param path
-	 * @return
+	 * Perform a GET request on the API with a given path
+	 * @param path Path to append to the base URL.
+	 * @return Response from the API. The API sends back data encoded in JSON.
 	 */
 	String get(String path) {
 		String response = null; // return variable

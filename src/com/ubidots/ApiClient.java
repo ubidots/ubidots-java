@@ -36,4 +36,13 @@ public class ApiClient {
 
 		return dataSources;
 	}
+	
+	public DataSource getDataSource(String id) {
+		String json = bridge.get("datasources/" + id);
+		
+		Gson gson = new Gson();
+		Map<String, String> rawDataSource = (Map<String, String>) gson.fromJson(json, Map.class);
+		
+		return new DataSource(rawDataSource, this);
+	}
 }

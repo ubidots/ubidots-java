@@ -10,5 +10,5 @@ public class Variable extends ApiObject {
 	
 	public String getName() {
 		return getAttribute("name");
-	}	
+	}
 }

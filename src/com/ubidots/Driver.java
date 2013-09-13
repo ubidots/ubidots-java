@@ -74,5 +74,21 @@ public class Driver {
 				System.out.println("    " + tmpVar.getName());
 			}
 		}
+		
+		System.out.println();
+		
+		// Part VIII: ds.createVariable()
+		String varName = "test#" + (int) (System.currentTimeMillis() / 1000);
+		for (DataSource tmpDs : api.getDataSources()) {
+			tmpDs.createVariable(varName, "mg");
+		}
+		
+		for (DataSource tmpDs : api.getDataSources()) {
+			System.out.println(tmpDs.getName());
+			
+			for (Variable tmpVar : tmpDs.getVariables()) {
+				System.out.println("    " + tmpVar.getName());
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.ubidots;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,37 @@ public class DataSource extends ApiObject {
 		}
 		
 		return variables;
-
 	}
+	
+	public Variable createVariable(String name, String unit) {
+		return createVariable(name, unit, null, null, null);
+	}
+	
+	public Variable createVariable(String name, String unit, String description,
+			Map<String, String> properties, String[] tags) {
+		// Build data map
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("name", name);
+	
+		if (unit != null)
+			data.put("unit", unit);
+		
+		if (description != null)
+			data.put("description", description);
+		
+		if (properties != null)
+			data.put("properties", properties);
+		
+		if (tags != null)
+			data.put("tags", tags);
+		
+		Gson gson = new Gson();
+		String json = bridge.post("datasources/" + getAttribute("id") + "/variables",
+				gson.toJson(data));
+
+		Variable var = new Variable(gson.fromJson(json, Map.class), api);
+		
+		return var;
+	}
+	
 }

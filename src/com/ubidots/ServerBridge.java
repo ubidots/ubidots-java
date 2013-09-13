@@ -158,6 +158,12 @@ public class ServerBridge {
 		return response;
 	}
 
+	/**
+	 * Perform a POST request on the API with a given path
+	 * @param path Path to append to the base URL.
+	 * @param json String of data encoded in JSON to send to the server.
+	 * @return Response from the API. The API sends back data encoded in JSON.
+	 */
 	public String post(String path, String json) {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(tokenHeader);		
@@ -193,6 +199,11 @@ public class ServerBridge {
 		return response;
 	}
 	
+	/**
+	 * Perform a DELETE request on the API with a given path
+	 * @param path Path to append to the base URL.
+	 * @return Response from the API. The API sends back data encoded in JSON.
+	 */
 	public String delete(String path) {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(tokenHeader);		

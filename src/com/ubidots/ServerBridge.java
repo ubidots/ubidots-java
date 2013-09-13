@@ -123,6 +123,7 @@ public class ServerBridge {
 	 * Perform a GET request on the API with a given path
 	 * @param path Path to append to the base URL.
 	 * @return Response from the API. The API sends back data encoded in JSON.
+	 * In the event of an error, will return null.
 	 */
 	String get(String path) {
 		String response = null; // return variable
@@ -163,6 +164,7 @@ public class ServerBridge {
 	 * @param path Path to append to the base URL.
 	 * @param json String of data encoded in JSON to send to the server.
 	 * @return Response from the API. The API sends back data encoded in JSON.
+	 * In the event of an error, will return null.
 	 */
 	public String post(String path, String json) {
 		String response = null; // return variable
@@ -203,6 +205,7 @@ public class ServerBridge {
 	 * Perform a DELETE request on the API with a given path
 	 * @param path Path to append to the base URL.
 	 * @return Response from the API. The API sends back data encoded in JSON.
+	 * In the event of an error, will return null.
 	 */
 	public String delete(String path) {
 		String response = null; // return variable

@@ -1,5 +1,6 @@
 package com.ubidots;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,31 @@ public class ApiClient {
 		Gson gson = new Gson();
 		Map<String, String> rawDataSource = (Map<String, String>) gson.fromJson(json, Map.class);
 		
-		return new DataSource(rawDataSource, this);
+		DataSource ds = new DataSource(rawDataSource, this);
+		
+		return ds;
+	}
+	
+	public DataSource createDataSource(String name) {
+		return createDataSource(name, null, null);
+	}
+	
+	public DataSource createDataSource(String name, Map<String, String> context, List<String> tags) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("name", name);
+		
+		if (context != null) 
+			data.put("context", context);
+		
+		if (tags != null)
+			data.put("tags", tags);
+		
+		Gson gson = new Gson();
+		String json = bridge.post("datasources/", gson.toJson(data));
+		Map<String, String> rawDataSource = (Map<String, String>) gson.fromJson(json, Map.class);
+		
+		DataSource ds = new DataSource(rawDataSource, this);
+
+		return ds;
 	}
 }

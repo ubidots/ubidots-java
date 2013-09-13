@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
@@ -138,7 +140,41 @@ public class ServerBridge {
 			}
 			
 			HttpResponse resp = client.execute(get);
-			resp.getEntity().getContent();
+			
+			BufferedReader rd = new BufferedReader(
+                    new InputStreamReader(resp.getEntity().getContent()));
+
+			StringBuffer result = new StringBuffer();
+			String line = "";
+			
+			while ((line = rd.readLine()) != null) {
+				result.append(line);
+			}
+
+			response = result.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return response;
+	}
+
+	public String post(String path, String json) {
+		String response = null; // return variable
+		Map<String, String> headers = prepareHeaders(tokenHeader);		
+		
+		try {
+			String url = baseUrl + path;
+			
+			HttpClient client = new DefaultHttpClient();
+			HttpPost post = new HttpPost(url);
+			
+			for (String name : headers.keySet()) {
+				post.setHeader(name, headers.get(name)); 
+			}
+			
+			post.setEntity(new StringEntity(json));
+			HttpResponse resp = client.execute(post);
 			
 			BufferedReader rd = new BufferedReader(
                     new InputStreamReader(resp.getEntity().getContent()));

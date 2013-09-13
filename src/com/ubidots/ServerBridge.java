@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -187,6 +188,44 @@ public class ServerBridge {
 			}
 
 			response = result.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return response;
+	}
+	
+	public String delete(String path) {
+		String response = null; // return variable
+		Map<String, String> headers = prepareHeaders(tokenHeader);		
+		
+		try {
+			String url = baseUrl + path;
+			
+			HttpClient client = new DefaultHttpClient();
+			HttpDelete delete = new HttpDelete(url);
+			
+			for (String name : headers.keySet()) {
+				delete.setHeader(name, headers.get(name)); 
+			}
+			
+			HttpResponse resp = client.execute(delete);
+			
+			if (resp.getEntity() == null)  {
+				response = "";
+			} else {
+				BufferedReader rd = new BufferedReader(
+	                    new InputStreamReader(resp.getEntity().getContent()));
+	
+				StringBuffer result = new StringBuffer();
+				String line = "";
+				
+				while ((line = rd.readLine()) != null) {
+					result.append(line);
+				}
+	
+				response = result.toString();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

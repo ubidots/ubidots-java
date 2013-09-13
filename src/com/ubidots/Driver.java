@@ -38,5 +38,41 @@ public class Driver {
 		}
 		
 		System.out.println();
+		
+		// Part VI: ds.remove()
+		api.createDataSource("todelete");
+		DataSource ds = null;
+		
+		for (DataSource tmpDs : api.getDataSources()) {
+			if (tmpDs.getName().equals("todelete")) {
+				ds = tmpDs;
+				break;
+			}
+		}
+		
+		ds.remove();
+		
+		boolean found = false;
+		
+		for (DataSource tmpDs : api.getDataSources()) {
+			if (tmpDs.getName().equals("todelete")) {
+				found = true;
+				break;
+			}
+		}
+		
+		assert ! found;
+		
+		System.out.println(found ? "found" : "not found");
+		System.out.println();
+		
+		// Part VII: ds.getVariables()
+		for (DataSource tmpDs : api.getDataSources()) {
+			System.out.println(tmpDs.getName());
+			
+			for (Variable tmpVar : tmpDs.getVariables()) {
+				System.out.println("    " + tmpVar.getName());
+			}
+		}
 	}
 }

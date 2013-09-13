@@ -1,21 +1,14 @@
 package com.ubidots;
 
-public class Variable {
+import java.util.Map;
 
-	public void saveValue(int value) {
-	
+public class Variable extends ApiObject {
+
+	Variable(Map<String, String> raw, ApiClient api) {
+		super(raw, api);
 	}
 	
-	public void saveValue(float value) {
-		
-	}
-	
-	public void saveValue(double value) {
-		
-	}
-	
-	private long getTimestamp() {
-		return (long)System.currentTimeMillis()/1000;
-	}
-	
+	public String getName() {
+		return getAttribute("name");
+	}	
 }

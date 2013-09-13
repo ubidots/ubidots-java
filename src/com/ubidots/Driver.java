@@ -15,6 +15,7 @@ public class Driver {
 		for (DataSource ds : api.getDataSources()) {
 			System.out.println(ds.getName());
 		}
+		
 		System.out.println();
 
 		// Part III: api.getDatasource(id)
@@ -28,6 +29,13 @@ public class Driver {
 		
 		System.out.println(api.createDataSource("abc").getName());
 		System.out.println(api.createDataSource("abc", null, tags).getName());
+		
+		System.out.println();
+		
+		// Part V: api.getVariables()
+		for (Variable v : api.getVariables()) {
+			System.out.println(v.getName());
+		}
 		
 		System.out.println();
 	}

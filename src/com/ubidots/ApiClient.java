@@ -71,4 +71,19 @@ public class ApiClient {
 
 		return ds;
 	}
+	
+	public Variable[] getVariables() {
+		String json = bridge.get("variables");
+		
+		Gson gson = new Gson();
+		List<Map<String, String>> rawVariables = gson.fromJson(json, List.class);
+		
+		Variable[] variables = new Variable[rawVariables.size()];
+		
+		for (int i = 0; i < rawVariables.size(); i++) {
+			variables[i] = new Variable(rawVariables.get(i), this);
+		}
+		
+		return variables;
+	}
 }

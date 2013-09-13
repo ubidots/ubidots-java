@@ -12,6 +12,8 @@ public class Driver {
 		System.out.println();
 
 		// Part II: api.getDataSources();
+		System.out.println("Part II");
+		
 		for (DataSource ds : api.getDataSources()) {
 			System.out.println(ds.getName());
 		}
@@ -19,10 +21,13 @@ public class Driver {
 		System.out.println();
 
 		// Part III: api.getDatasource(id)
+		System.out.println("Part III");
+
 		System.out.println(api.getDataSource("522fa5e6f91b282c73573a75").getName());
 		System.out.println();
 		
 		// Part IV: api.createDataSource(data)
+		System.out.println("Part IV");
 		List<String> tags = new LinkedList<String>();;
 		tags.add("aabb");
 		tags.add("ccdd");
@@ -30,9 +35,15 @@ public class Driver {
 		System.out.println(api.createDataSource("abc").getName());
 		System.out.println(api.createDataSource("abc", null, tags).getName());
 		
+		for (DataSource tmpDs : api.getDataSources())
+			if (tmpDs.getName().equals("abc"))
+				tmpDs.remove();
+		
 		System.out.println();
 		
 		// Part V: api.getVariables()
+		System.out.println("Part V");
+
 		for (Variable v : api.getVariables()) {
 			System.out.println(v.getName());
 		}
@@ -40,6 +51,8 @@ public class Driver {
 		System.out.println();
 		
 		// Part VI: ds.remove()
+		System.out.println("Part VI");
+		
 		api.createDataSource("todelete");
 		DataSource ds = null;
 		
@@ -67,6 +80,8 @@ public class Driver {
 		System.out.println();
 		
 		// Part VII: ds.getVariables()
+		System.out.println("Part VII");
+		
 		for (DataSource tmpDs : api.getDataSources()) {
 			System.out.println(tmpDs.getName());
 			
@@ -78,6 +93,8 @@ public class Driver {
 		System.out.println();
 		
 		// Part VIII: ds.createVariable()
+		System.out.println("Part VIII");
+
 		String varName = "test#" + (int) (System.currentTimeMillis() / 1000);
 		for (DataSource tmpDs : api.getDataSources()) {
 			tmpDs.createVariable(varName, "mg");
@@ -90,5 +107,22 @@ public class Driver {
 				System.out.println("    " + tmpVar.getName());
 			}
 		}
+		
+		System.out.println();
+		
+		// Part IIX: var.saveValue()
+		System.out.println("Part IIX");
+		
+		DataSource newDs = api.createDataSource("mytest");
+		Variable myVar = newDs.createVariable("mytestvar", "hPa");
+		myVar.saveValue(1);
+		myVar.saveValue(2);
+		myVar.saveValue(3);
+		
+		for (Value val : myVar.getValues()) {
+			System.out.println(val.getAttributeDouble("value"));
+		}
+		
+		newDs.remove();
 	}
 }

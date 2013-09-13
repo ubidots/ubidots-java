@@ -27,7 +27,7 @@ public class ApiClient {
 		String json = bridge.get("datasources");
 		
 		Gson gson = new Gson();
-		List<Map<String, String>> rawDataSources = gson.fromJson(json, List.class);
+		List<Map<String, Object>> rawDataSources = gson.fromJson(json, List.class);
 		
 		DataSource[] dataSources = new DataSource[rawDataSources.size()];
 		
@@ -42,7 +42,7 @@ public class ApiClient {
 		String json = bridge.get("datasources/" + id);
 		
 		Gson gson = new Gson();
-		Map<String, String> rawDataSource = (Map<String, String>) gson.fromJson(json, Map.class);
+		Map<String, Object> rawDataSource = (Map<String, Object>) gson.fromJson(json, Map.class);
 		
 		DataSource ds = new DataSource(rawDataSource, this);
 		
@@ -65,7 +65,7 @@ public class ApiClient {
 		
 		Gson gson = new Gson();
 		String json = bridge.post("datasources/", gson.toJson(data));
-		Map<String, String> rawDataSource = (Map<String, String>) gson.fromJson(json, Map.class);
+		Map<String, Object> rawDataSource = (Map<String, Object>) gson.fromJson(json, Map.class);
 		
 		DataSource ds = new DataSource(rawDataSource, this);
 
@@ -76,7 +76,7 @@ public class ApiClient {
 		String json = bridge.get("variables");
 		
 		Gson gson = new Gson();
-		List<Map<String, String>> rawVariables = gson.fromJson(json, List.class);
+		List<Map<String, Object>> rawVariables = gson.fromJson(json, List.class);
 		
 		Variable[] variables = new Variable[rawVariables.size()];
 		

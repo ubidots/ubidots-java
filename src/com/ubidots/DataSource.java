@@ -13,23 +13,23 @@ import com.google.gson.Gson;
  */
 public class DataSource extends ApiObject {
 
-	DataSource(Map<String, String> raw, ApiClient api) {
+	DataSource(Map<String, Object> raw, ApiClient api) {
 		super(raw, api);
 	}
 	
 	public String getName() {
-		return getAttribute("name");
+		return getAttributeString("name");
 	}
 	
 	public void remove() {
-		bridge.delete("datasources/" + getAttribute("id"));
+		bridge.delete("datasources/" + getAttributeString("id"));
 	}
 	
 	public Variable[] getVariables() {
-		String json = bridge.get("datasources/" + getAttribute("id") + "/variables");
+		String json = bridge.get("datasources/" + getAttributeString("id") + "/variables");
 
 		Gson gson = new Gson();
-		List<Map<String, String>> rawVariables = gson.fromJson(json, List.class);
+		List<Map<String, Object>> rawVariables = gson.fromJson(json, List.class);
 		
 		Variable[] variables = new Variable[rawVariables.size()];
 		
@@ -63,7 +63,7 @@ public class DataSource extends ApiObject {
 			data.put("tags", tags);
 		
 		Gson gson = new Gson();
-		String json = bridge.post("datasources/" + getAttribute("id") + "/variables",
+		String json = bridge.post("datasources/" + getAttributeString("id") + "/variables",
 				gson.toJson(data));
 
 		Variable var = new Variable(gson.fromJson(json, Map.class), api);

@@ -107,14 +107,11 @@ public class ServerBridge {
 		return customHeaders;
 	}
 	
-	private Map<String, String> prepareHeaders(Map<String, String>... args) {
+	private Map<String, String> prepareHeaders(Map<String, String> arg) {
 		Map<String, String> headers = new HashMap<String, String>();
 		
 		headers.putAll(getCustomHeaders());
-		
-		for (Map<String, String> arg : args) {
-			headers.putAll(arg);
-		}
+		headers.putAll(arg);
 		
 		return headers;
 	}

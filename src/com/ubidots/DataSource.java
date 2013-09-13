@@ -1,21 +1,19 @@
 package com.ubidots;
 
+import java.util.Map;
+
 /**
  * Data Source.
  * 
  * @author Ubidots
  */
-class DataSource {
+public class DataSource extends ApiObject {
 
-	DataSource(String name) {
-		
+	DataSource(Map<String, String> raw, ApiClient api) {
+		super(raw, api);
 	}
 	
-	public Variable[] getVariables() {
-		return null;
-	}
-	
-	public Variable createVariable() {
-		return null;
+	public String getName() {
+		return getAttribute("name");
 	}
 }

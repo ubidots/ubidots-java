@@ -6,5 +6,8 @@ public class Driver {
 		String apiKey = "74ccf3b7957fe38e3382c9fd107d70870edbb462";
 		ApiClient api = new ApiClient(apiKey);
 		
+		for (DataSource ds : api.getDataSources()) {
+			System.out.println(ds.getName());
+		}
 	}
 }

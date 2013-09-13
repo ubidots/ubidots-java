@@ -6,13 +6,8 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-
-/**
- * API Client.
- * 
- * @author Ubidots
- */
 public class ApiClient {
+	
 	private ServerBridge bridge;
 	
 	public ApiClient(String apiKey) {

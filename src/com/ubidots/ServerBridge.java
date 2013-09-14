@@ -163,7 +163,7 @@ public class ServerBridge {
 	 * @return Response from the API. The API sends back data encoded in JSON.
 	 * In the event of an error, will return null.
 	 */
-	public String post(String path, String json) {
+	String post(String path, String json) {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(tokenHeader);		
 		
@@ -204,7 +204,7 @@ public class ServerBridge {
 	 * @return Response from the API. The API sends back data encoded in JSON.
 	 * In the event of an error, will return null.
 	 */
-	public String delete(String path) {
+	String delete(String path) {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(tokenHeader);		
 		

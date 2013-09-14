@@ -27,7 +27,7 @@ class ApiObject {
 		return (Integer) raw.get(name);
 	}
 	
-	String getId() {
+	public String getId() {
 		return (String) raw.get("id");
 	}
 }

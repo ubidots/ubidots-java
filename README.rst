@@ -2,8 +2,7 @@
 Ubidots Java API Client
 ===================================
 
-The Ubidots Java API Client makes calls to the `Ubidots API <http://things.ubidots.com/api>`_.  
-
+The Ubidots Java API Client makes calls to the `Ubidots API <http://things.ubidots.com/api>`_.  For more information about Ubidots, visit `http://ubidots.com <http://ubidots.com>`_.
 
 
 Dependencies

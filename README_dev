@@ -1,0 +1,17 @@
+
+Building the library
+============================
+Ant is used for building the library.
+
+   $ ant clean                # Clean the build/ directory
+   $ ant compile              # Compiles library classes into build/
+   $ ant jar                  # Create a jar for the library
+
+The latter command outputs the jar to build/jar/ubidots.jar.
+
+
+Notes about dependencies
+============================
+All dependencies are provided into the libs/ directory for convinience. However,
+the compiled jar does not not bundle them. End-users wishing to use the Java
+library must add the dependencies to their project manually.

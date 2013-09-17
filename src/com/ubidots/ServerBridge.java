@@ -71,6 +71,7 @@ public class ServerBridge {
 		try {
 			String url = baseUrl + path;
 			
+			@SuppressWarnings("resource")
 			HttpClient client = new DefaultHttpClient();
 			HttpPost post = new HttpPost(url);
 			
@@ -129,6 +130,7 @@ public class ServerBridge {
 		try {
 			String url = baseUrl + path;
 			
+			@SuppressWarnings("resource")
 			HttpClient client = new DefaultHttpClient();
 			HttpGet get = new HttpGet(url);
 			
@@ -170,6 +172,7 @@ public class ServerBridge {
 		try {
 			String url = baseUrl + path;
 			
+			@SuppressWarnings("resource")
 			HttpClient client = new DefaultHttpClient();
 			HttpPost post = new HttpPost(url);
 			
@@ -211,6 +214,7 @@ public class ServerBridge {
 		try {
 			String url = baseUrl + path;
 			
+			@SuppressWarnings("resource")
 			HttpClient client = new DefaultHttpClient();
 			HttpDelete delete = new HttpDelete(url);
 			

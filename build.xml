@@ -1,0 +1,26 @@
+<project name="Ubidots">
+  <path id="Ubidots.classpath">
+    <pathelement location="libs/gson-2.2.4.jar" />
+    <pathelement location="libs/org.apache.httpcomponents.httpcore_4.3.jar" />
+    <pathelement location="libs/org.apache.httpcomponents.httpclient_4.3.jar" />
+    <pathelement location="libs/commons-logging-1.1.2.jar" />
+  </path>
+
+  <target name="clean">
+    <delete dir="build" />
+  </target>
+  
+  <target name="compile">
+    <mkdir dir="build/classes"/>
+    <javac srcdir="src" destdir="build/classes">
+      <classpath refid="Ubidots.classpath"/>
+    </javac>
+  </target>
+  
+  <target name="jar">
+    <mkdir dir="build/jar"/>
+    <jar destfile="build/jar/ubidots.jar" basedir="build/classes">
+      <fileset dir="bin"/>
+    </jar>
+  </target>
+</project>

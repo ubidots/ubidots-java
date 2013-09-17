@@ -122,6 +122,16 @@ For example, if a data source has the id 51c99cfdf91b28459f976414, it can be ret
     mySpecificDataSource = api.getDataSource("51c99cfdf91b28459f976414");
 
 
+Getting All Variables from a Data source
+-----------------------------------------
+
+You can also retrieve all the variables of a data source:
+
+.. code-block:: java
+
+    Variable[] allDataSourceVariables = dataSource.getVariables()
+
+
 Getting a specific Variable
 ------------------------------
 

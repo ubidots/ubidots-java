@@ -18,7 +18,7 @@ Ubidots for Java is available as an unbundled jar, with the following depdencies
 * `Apache Commons - Logging <http://commons.apache.org/proper/commons-logging/>`_, a dependency of Apache HttpClient (no logging is actually used)
 
 
-For the latest version of the dependencies, follow the above links. To download the latest versions *at the time of writing*, follow the commands below:
+For the latest version of the dependencies, follow the above links. To download the latest versions *at the time of writing*, use the commands below:
 
 .. code-block:: bash
 

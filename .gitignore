@@ -1,0 +1,7 @@
+# Build files
+*.class
+build
+
+# Emacs junk files
+*~
+[#]*[#]

@@ -115,7 +115,7 @@ Getting a specific Data source
 
 Each data source has a unique id that tells the server which one to retrieve.
 
-For example, if a data source has the id 51c99cfdf91b28459f976414, it can be retrieved using the method getDatasource of the ApiClient instance:
+For example, if a data source has the id 51c99cfdf91b28459f976414, it can be retrieved using the method getDatasource(String) of the ApiClient instance:
 
 
 .. code-block:: java

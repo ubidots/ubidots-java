@@ -129,7 +129,7 @@ You can also retrieve all the variables of a data source:
 
 .. code-block:: java
 
-    Variable[] allDataSourceVariables = dataSource.getVariables()
+    Variable[] allDataSourceVariables = dataSource.getVariables();
 
 
 Getting a specific Variable

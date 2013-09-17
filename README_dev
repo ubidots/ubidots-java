@@ -9,9 +9,8 @@ Ant is used for building the library.
 
 The latter command outputs the jar to build/jar/ubidots.jar.
 
-
 Notes about dependencies
 ============================
 All dependencies are provided into the libs/ directory for convinience. However,
-the compiled jar does not not bundle them. End-users wishing to use the Java
-library must add the dependencies to their project manually.
+the compiled jar does not bundle them. End-users wishing to use the Java library
+must add the dependencies to their project themselves.

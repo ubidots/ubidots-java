@@ -8,7 +8,7 @@ The Ubidots Java API Client makes calls to the `Ubidots API <http://things.ubido
 Dependencies
 -----------------------------
 
-Ubidots for Java is available as an unbundled jar, with the following depdencies:
+Ubidots for Java is available as an unbundled jar, with the following dependencies:
 
 
 * `Gson <http://code.google.com/p/google-gson/>`_, the open-source Google JSON library

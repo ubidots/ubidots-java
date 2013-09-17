@@ -53,7 +53,7 @@ Now you have an instance of the ApiClient class ("api") which can be used to con
 Creating a DataSource
 ----------------------
 
-As you might know by now, a data source representes a device or a virtual source.
+As you might know by now, a data source represents a device or a virtual source.
 
 This line creates a new data source:
 
@@ -88,7 +88,7 @@ Given the instantiated variable, you can save a new value with the following lin
 
     variable.saveValue(10);
 
-Unlike the Python library, the timestamp is automatically created for the value on the client-side.
+Unlike the Python library, the timestamp for the value is automatically created for the value on the client-side.
 
 Getting Values
 --------------
@@ -103,7 +103,7 @@ To get the values for a variable, use the method getValues() in an instance of t
 Getting all the Data sources
 -----------------------------
 
-If you want to get all your data sources you can use the instance of the api directly:
+If you want to get all your data sources you can use the instance of the API directly:
 
 .. code-block:: java
 
@@ -115,7 +115,7 @@ Getting a specific Data source
 
 Each data source has a unique id that tells the server which one to retrieve.
 
-For example, if a data source has the id 51c99cfdf91b28459f976414, it can be retrieved using the method get_datasource of the ApiClient instance:
+For example, if a data source has the id 51c99cfdf91b28459f976414, it can be retrieved using the method getDatasource of the ApiClient instance:
 
 
 .. code-block:: java

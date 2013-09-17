@@ -15,10 +15,10 @@ Ubidots for Java is available as an unbundled jar, with the following depdencies
 * `Gson <http://code.google.com/p/google-gson/>`_, the open-source Google JSON library
 * `Apache HttpCore <http://hc.apache.org/downloads.cgi>`_, Apache's open-source implementation of HTTP
 * `Apache HttpClient <http://hc.apache.org/downloads.cgi>`_, Apache's open-source implementation of a HTTP agent
-* `Apache Commons (Logging) <http://commons.apache.org/proper/commons-logging/>`_, a dependency of Apache HttpClient (no logging is actually used)
+* `Apache Commons - Logging <http://commons.apache.org/proper/commons-logging/>`_, a dependency of Apache HttpClient (no logging is actually used)
 
 
-For newer versions of the libraries, check the above links. Versions at the time of writing can be downloaded with the commands below:
+For the latest version of the dependencies, follow the above links. To download the latest versions *at the time of writing*, follow the commands below:
 
 .. code-block:: bash
 

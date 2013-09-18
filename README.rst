@@ -44,7 +44,7 @@ Let's assume your API key is: "7fj39fk3044045k89fbh34rsd9823jkfs8323" then your 
 
 .. code-block:: java
 
-    api = new ApiClient("7fj39fk3044045k89fbh34rsd9823jkfs8323");
+    ApiClient api = new ApiClient("7fj39fk3044045k89fbh34rsd9823jkfs8323");
 
 Now you have an instance of the ApiClient class ("api") which can be used to connect to the API service.
 
@@ -58,7 +58,7 @@ This line creates a new data source:
 
 .. code-block:: java
 
-    dataSource = api.createDatasource("myNewDs");
+    DataSource dataSource = api.createDatasource("myNewDs");
 
 
 This new data source can be used to track different variables, so let's create one.
@@ -72,7 +72,7 @@ A variable is a time-series containing different values over time. Let's create 
 
 .. code-block:: java
 
-    variable = dataSource.createVariable("myNewVar");
+    Variable variable = dataSource.createVariable("myNewVar");
 
 
 Now you have a new variable, so let's create a new value for this variable.
@@ -119,7 +119,7 @@ For example, if a data source has the id 51c99cfdf91b28459f976414, it can be ret
 
 .. code-block:: java
 
-    mySpecificDataSource = api.getDataSource("51c99cfdf91b28459f976414");
+    DataSource mySpecificDataSource = api.getDataSource("51c99cfdf91b28459f976414");
 
 
 Getting All Variables from a Data source
@@ -139,4 +139,4 @@ As with data sources, use your variable's id to retrieve the details about a var
 
 .. code-block:: java
 
-    mySpecificVariable = api.getVariable("56799cf1231b28459f976417");
+    Variable mySpecificVariable = api.getVariable("56799cf1231b28459f976417");

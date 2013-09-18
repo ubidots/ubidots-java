@@ -44,7 +44,7 @@ Let's assume your API key is: "7fj39fk3044045k89fbh34rsd9823jkfs8323" then your 
 
 .. code-block:: java
 
-    api = ApiClient("7fj39fk3044045k89fbh34rsd9823jkfs8323");
+    api = new ApiClient("7fj39fk3044045k89fbh34rsd9823jkfs8323");
 
 Now you have an instance of the ApiClient class ("api") which can be used to connect to the API service.
 

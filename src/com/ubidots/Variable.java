@@ -38,7 +38,7 @@ public class Variable extends ApiObject {
 	public void saveValue(int value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("value", new Integer(value));
-		map.put("timestamp", new Integer(getTimestamp()));
+		map.put("timestamp", new Long(getTimestamp()));
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
@@ -49,7 +49,7 @@ public class Variable extends ApiObject {
 	public void saveValue(double value) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("value", new Double(value));
-		map.put("timestamp", new Integer(getTimestamp()));
+		map.put("timestamp", new Long(getTimestamp()));
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
@@ -58,7 +58,7 @@ public class Variable extends ApiObject {
 
 	}
 	
-	private int getTimestamp() {
-		return (int) (System.currentTimeMillis() / 1000.0);
+	private long getTimestamp() {
+		return System.currentTimeMillis();
 	}
 }

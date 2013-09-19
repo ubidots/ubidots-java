@@ -19,8 +19,6 @@
   
   <target name="jar">
     <mkdir dir="build/jar"/>
-    <jar destfile="build/jar/ubidots.jar" basedir="build/classes">
-      <fileset dir="bin"/>
-    </jar>
+    <jar destfile="build/jar/ubidots.jar" basedir="build/classes" />
   </target>
 </project>

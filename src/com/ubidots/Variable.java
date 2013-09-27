@@ -84,6 +84,7 @@ public class Variable extends ApiObject {
 			list.add(map);
 		}
 
+		// Convert to JSON and POST to server
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		bridge.post("variables/" + getId() + "/values", json);

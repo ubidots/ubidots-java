@@ -97,8 +97,8 @@ Values may also be added in bulk. This is especially useful when data is gathere
 
 .. code-block:: java
 
-    int[] values = new int[5];
-    values[0] = 10;
+    int[] values = new int[5];        // double[] values also accepted
+    values[0] = 10;ou
     values[1] = 1;
     values[2] = 8;
     values[3] = 3;

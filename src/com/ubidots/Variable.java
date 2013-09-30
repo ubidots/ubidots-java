@@ -59,7 +59,7 @@ public class Variable extends ApiObject {
 
 	}
 	
-	public void saveValues(int values[], int timestamps[]) {
+	public void saveValues(int values[], long timestamps[]) {
 		double valuesDouble[] = new double[values.length];
 
 		for (int i = 0; i < values.length; i++) {
@@ -69,8 +69,10 @@ public class Variable extends ApiObject {
 		saveValues(valuesDouble, timestamps);
 	}
 
-	public void saveValues(double values[], int timestamps[]) {
-		if (values.length != timestamps.length) {
+	public void saveValues(double values[], long timestamps[]) {
+		if (values == null || timestamps == null) {
+			throw new NullPointerException();
+		} else if (values.length != timestamps.length) {
 			throw new RuntimeException("values[] and timestamps[] "
 				+ "must have same length");
 		}

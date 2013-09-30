@@ -89,6 +89,31 @@ Given the instantiated variable, you can save a new value with the following lin
 
 Unlike the Python library, the timestamp for the value is automatically created for the value on the client-side.
 
+
+Saving Values in Bulk
+---------------------
+
+Values may also be added in bulk. This is especially useful when data is gathered offline and connection to the internet is limited.
+
+.. code-block:: java
+
+    int[] values = new int[5];        // double[] values also accepted
+    values[0] = 10;ou
+    values[1] = 1;
+    values[2] = 8;
+    values[3] = 3;
+    values[4] = 5;
+
+    long[] timestamps = new long[5];
+    timestamps[0] = 1380558972614l;
+    timestamps[1] = 1380558972915l;
+    timestamps[2] = 1380558973516l;
+    timestamps[3] = 1380558973617l;
+    timestamps[4] = 1380561122434l;
+
+    var.saveValues(values, timestamps);
+
+
 Getting Values
 --------------
 

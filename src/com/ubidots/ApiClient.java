@@ -14,6 +14,10 @@ public class ApiClient {
 		bridge = new ServerBridge(apiKey);
 	}
 
+	public ApiClient(String apiKey, String baseUrl) {
+		bridge = new ServerBridge(apiKey, baseUrl);
+	}
+
 	ServerBridge getServerBridge() {
 		return bridge;
 	}

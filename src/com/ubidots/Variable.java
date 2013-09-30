@@ -90,7 +90,7 @@ public class Variable extends ApiObject {
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		bridge.post("variables/" + getId() + "/values", json);
-        }
+	}
 
 	private long getTimestamp() {
 		return System.currentTimeMillis();

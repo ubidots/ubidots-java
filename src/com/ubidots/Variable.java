@@ -1,7 +1,8 @@
 package com.ubidots;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -58,6 +59,39 @@ public class Variable extends ApiObject {
 
 	}
 	
+	public void saveValues(int values[], long timestamps[]) {
+		double valuesDouble[] = new double[values.length];
+
+		for (int i = 0; i < values.length; i++) {
+			valuesDouble[i] = (double) values[i];
+		}
+
+		saveValues(valuesDouble, timestamps);
+	}
+
+	public void saveValues(double values[], long timestamps[]) {
+		if (values == null || timestamps == null) {
+			throw new NullPointerException();
+		} else if (values.length != timestamps.length) {
+			throw new RuntimeException("values[] and timestamps[] "
+				+ "must have same length");
+		}
+
+		// Create a list of maps to be sent as JSON: [{...}, ...]
+		List<Map> list = new ArrayList<Map>();
+		for (int i = 0; i < values.length; i++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("value", values[i]);
+			map.put("timestamp", timestamps[i]);
+			list.add(map);
+		}
+
+		// Convert to JSON and POST to server
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		bridge.post("variables/" + getId() + "/values", json);
+	}
+
 	private long getTimestamp() {
 		return System.currentTimeMillis();
 	}

@@ -71,7 +71,7 @@ public class ApiClientTest {
 				+ "'created_at': '2013-10-31T22:07:37.394', "
 				+ "'description': null, "
 				+ "'id': 'a', "
-				+ "'last_activity': None, "
+				+ "'last_activity': null, "
 				+ "'name': 'XYZ', "
 				+ "'number_of_variables': 0,"
 				+ "'owner': 'http://things.ubidots.com/api/v1.5/users/180', "

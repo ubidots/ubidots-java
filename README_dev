@@ -6,6 +6,7 @@ Ant is used for building the library.
    $ ant clean                # Clean the build/ directory
    $ ant compile              # Compiles library classes into build/
    $ ant jar                  # Create a jar for the library
+   $ ant test                 # Execute JUnit Tests
 
 The latter command outputs the jar to build/jar/ubidots.jar.
 

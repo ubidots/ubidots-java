@@ -49,6 +49,16 @@ public class ApiClientTest {
 		Variable[] variables = api.getVariables();
 		
 		assertEquals(variables.length, 5);
+		assertEquals(variables[0].getName(), "A");
+		assertEquals(variables[0].getId(),   "a");
+		assertEquals(variables[1].getName(), "B");
+		assertEquals(variables[1].getId(),   "b");
+		assertEquals(variables[2].getName(), "C");
+		assertEquals(variables[2].getId(),   "c");
+		assertEquals(variables[3].getName(), "D");
+		assertEquals(variables[3].getId(),   "d");
+		assertEquals(variables[4].getName(), "E");
+		assertEquals(variables[4].getId(),   "e");
 	}
 	
 	@Test

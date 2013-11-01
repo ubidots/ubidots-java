@@ -62,4 +62,31 @@ public class ApiClientTest {
 		
 		assertNull(ds);
 	}
+
+	@Test
+	public void testGetDatasourceFound() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.get("datasources/a")).thenReturn("{"
+				+ "'context': {},"
+				+ "'created_at': '2013-10-31T22:07:37.394', "
+				+ "'description': null, "
+				+ "'id': 'a', "
+				+ "'last_activity': None, "
+				+ "'name': 'XYZ', "
+				+ "'number_of_variables': 0,"
+				+ "'owner': 'http://things.ubidots.com/api/v1.5/users/180', "
+				+ "'parent': null,"
+				+ "'tags': [], "
+				+ "'url': 'http://things.ubidots.com/api/v1.5/datasources/a', "
+				+ "'variables_url': 'http://things.ubidots.com/api/v1.5/datasources/a/variables' "
+				+ "}");
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		DataSource ds = api.getDataSource("a");
+
+		assertNotNull(ds);
+		assertEquals("a", ds.getId());
+		assertEquals("XYZ", ds.getName());
+	}
 }

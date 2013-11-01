@@ -1,8 +1,8 @@
 package com.ubidots;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 import static org.mockito.Mockito.*;
+import org.junit.Test;
 
 public class ApiClientTest {
 

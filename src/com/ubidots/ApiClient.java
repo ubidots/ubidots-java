@@ -85,4 +85,9 @@ public class ApiClient {
 		
 		return variables;
 	}
+
+	// For testing
+	void setServerBridge(ServerBridge bridge) {
+		this.bridge = bridge;
+	}
 }

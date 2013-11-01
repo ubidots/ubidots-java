@@ -1,3 +1,7 @@
+# Eclipse files
+.project
+.classpath
+
 # Build files
 *.class
 build

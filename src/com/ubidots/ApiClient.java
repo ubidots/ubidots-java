@@ -43,9 +43,10 @@ public class ApiClient {
 		Gson gson = new Gson();
 		Map<String, Object> rawDataSource = (Map<String, Object>) gson.fromJson(json, Map.class);
 		
-		DataSource ds = new DataSource(rawDataSource, this);
-		
-		return ds;
+		if (rawDataSource.containsKey("detail"))
+			return null;
+		else
+			return new DataSource(rawDataSource, this);
 	}
 	
 	public DataSource createDataSource(String name) {

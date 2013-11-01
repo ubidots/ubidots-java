@@ -10,7 +10,7 @@ public class ApiClientTest {
 	public void testGetVariablesEmptyList() {
 		ServerBridge bridge = mock(ServerBridge.class);
 		when(bridge.get("variables")).thenReturn("[]");
-				
+
 		ApiClient api = new ApiClient("abc");
 		api.setServerBridge(bridge);
 		Variable[] variables = api.getVariables();
@@ -49,5 +49,17 @@ public class ApiClientTest {
 		Variable[] variables = api.getVariables();
 		
 		assertEquals(variables.length, 5);
+	}
+	
+	@Test
+	public void testGetDatasourceMissing() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.get("datasources/a")).thenReturn("{'detail': 'Not found'}");
+		
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		DataSource ds = api.getDataSource("a");
+		
+		assertNull(ds);
 	}
 }

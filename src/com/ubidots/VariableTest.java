@@ -27,4 +27,25 @@ public class VariableTest {
 		// Verify API endpoint was requested in ServerBridge
 		verify(bridge).post(eq("variables/a/values"), anyString());
 	}
+
+	@Test
+	public void testSaveValueDoubleCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
+
+		// Create an ApiClient instance with mock server bridge
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable instance with our patched ApiClient
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		// Call method to save a value
+		var.saveValue(0.0);
+
+		// Verify API endpoint was requested in ServerBridge
+		verify(bridge).post(eq("variables/a/values"), anyString());
+	}
 }

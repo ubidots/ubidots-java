@@ -71,4 +71,20 @@ public class VariableTest {
 		
 		verify(bridge).delete("variables/a");
 	}
+	
+	@Test
+	public void testAttributes() {
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "My Var");
+		raw.put("unit", "hPa");
+		raw.put("icon", "foobar");
+		
+		Variable variable = new Variable(raw, mock(ApiClient.class));
+		
+		assertEquals(variable.getId(), raw.get("id"));
+		assertEquals(variable.getName(), raw.get("name"));
+		assertEquals(variable.getUnit(), raw.get("unit"));
+		assertEquals(variable.getIcon(), raw.get("icon"));
+	}
 }

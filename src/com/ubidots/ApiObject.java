@@ -23,14 +23,6 @@ class ApiObject {
 		return (Double) raw.get(name);
 	}
 	
-	Integer getAttributeInteger(String name) {
-		return (Integer) raw.get(name);
-	}
-	
-	Long getAttributeLong(String name) {
-		return (Long) raw.get(name);
-	}
-	
 	protected Object getAttribute(String name) {
 		return raw.get(name);
 	}

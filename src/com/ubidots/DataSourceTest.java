@@ -83,4 +83,21 @@ public class DataSourceTest {
 		assertEquals("iconC", variables[2].getIcon());
 	}
 
+	@Test
+	public void testRemoveCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.delete("datasources/a")).thenReturn("");
+		
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "MyDS");
+
+		DataSource dataSource = new DataSource(raw, api);
+		dataSource.remove();
+		
+		verify(bridge).delete("datasources/a");
+	}
 }

@@ -99,4 +99,18 @@ public class ApiClientTest {
 		assertEquals("a", ds.getId());
 		assertEquals("XYZ", ds.getName());
 	}
+	
+	@Test
+	public void testGetDatasourcesEmptyList() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.get("datasources")).thenReturn("[]");
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		DataSource[] dataSources = api.getDataSources();
+		 
+		verify(bridge).get("datasources");
+		assertEquals(0, dataSources.length);
+	}
 }

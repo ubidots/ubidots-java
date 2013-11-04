@@ -8,6 +8,10 @@ public class Value extends ApiObject {
 		super(raw, api);
 	}
 	
+	public long getTimestamp() {
+		return getAttributeLong("timestamp").longValue();
+	}
+
 	public double getValueDouble() {
 		return getAttributeDouble("value").doubleValue();
 	}

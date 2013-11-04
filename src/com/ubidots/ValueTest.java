@@ -11,13 +11,14 @@ public class ValueTest {
 	public void testAttributes() {
 		Map<String, Object> raw  = new HashMap<String, Object>();
 		raw.put("id", "abcdef");
-		raw.put("timestamp", new Integer(1234));
+		raw.put("timestamp", new Long(1383597065839l));
 		raw.put("value", new Integer(5678));
 		
 		Value value = new Value(raw, mock(ApiClient.class));
 		
 		assertEquals(value.getId(), raw.get("id"));
 		assertEquals(value.getValueInt(), ((Integer)raw.get("value")).intValue());
+		assertEquals(value.getTimestamp(), ((Long)raw.get("timestamp")).longValue());
 	}
 
 }

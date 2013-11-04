@@ -2,7 +2,9 @@ package com.ubidots;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
 import java.util.*;
+
 import org.junit.Test;
 
 public class VariableTest {
@@ -47,5 +49,26 @@ public class VariableTest {
 
 		// Verify API endpoint was requested in ServerBridge
 		verify(bridge).post(eq("variables/a/values"), anyString());
+	}
+	
+
+	@Test
+	public void testRemoveCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.delete("variables/a")).thenReturn("");
+		
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "My Var");
+		raw.put("unit", "hPa");
+		raw.put("icon", "foobar");
+
+		Variable variable = new Variable(raw, api);
+		variable.remove();
+		
+		verify(bridge).delete("variables/a");
 	}
 }

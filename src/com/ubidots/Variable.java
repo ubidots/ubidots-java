@@ -17,6 +17,14 @@ public class Variable extends ApiObject {
 		return getAttributeString("name");
 	}
 	
+	public String getUnit() {
+		return getAttributeString("unit");
+	}
+	
+	public String getIcon() {
+		return getAttributeString("icon");
+	}
+	
 	public void remove() {
 		bridge.delete("variables/" + getAttributeString("id"));
 	}

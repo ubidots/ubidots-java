@@ -87,4 +87,24 @@ public class VariableTest {
 		assertEquals(variable.getUnit(), raw.get("unit"));
 		assertEquals(variable.getIcon(), raw.get("icon"));
 	}
+	
+	@Test
+	public void testGetValuesEmptyList() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.get("variables/a/values")).thenReturn("[]");
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "My Var");
+		raw.put("unit", "hPa");
+		raw.put("icon", "foobar");
+
+		Variable variable = new Variable(raw, api);
+		Value[] values = variable.getValues();
+		
+		assertEquals(0, values.length);
+	}
 }

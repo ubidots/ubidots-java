@@ -31,6 +31,10 @@ class ApiObject {
 		return (Long) raw.get(name);
 	}
 	
+	protected Object getAttribute(String name) {
+		return raw.get(name);
+	}
+	
 	public String getId() {
 		return (String) raw.get("id");
 	}

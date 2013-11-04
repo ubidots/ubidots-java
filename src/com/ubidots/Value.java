@@ -12,11 +12,14 @@ public class Value extends ApiObject {
 		return getAttributeLong("timestamp").longValue();
 	}
 
-	public double getValueDouble() {
-		return getAttributeDouble("value").doubleValue();
-	}
-	
-	public int getValueInt() {
-		return getAttributeInteger("value").intValue();
+	public double getValue() {
+		Object o = getAttribute("value");
+		if (o instanceof Double) {
+			return ((Double)o).doubleValue();
+		} else if (o instanceof Integer) {
+			return ((Integer)o).doubleValue();
+		} else {
+			throw new RuntimeException("Unexpected value type: " + o.toString());
+		}
 	}
 }

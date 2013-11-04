@@ -17,8 +17,9 @@ public class ValueTest {
 		Value value = new Value(raw, mock(ApiClient.class));
 		
 		assertEquals(value.getId(), raw.get("id"));
-		assertEquals(value.getValueInt(), ((Integer)raw.get("value")).intValue());
 		assertEquals(value.getTimestamp(), ((Long)raw.get("timestamp")).longValue());
+		assertTrue(.1 > Math.abs(value.getValue()
+				- ((Integer)raw.get("value")).doubleValue()));
 	}
 
 }

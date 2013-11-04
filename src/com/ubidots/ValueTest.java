@@ -18,7 +18,6 @@ public class ValueTest {
 		
 		assertEquals(value.getId(), raw.get("id"));
 		assertEquals(value.getValueInt(), ((Integer)raw.get("value")).intValue());
-		assertEquals(value.getTimestamp(), ((Integer)raw.get("timestamp")).intValue());
 	}
 
 }

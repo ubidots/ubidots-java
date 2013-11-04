@@ -9,7 +9,7 @@ public class Value extends ApiObject {
 	}
 	
 	public int getTimestamp() {
-		return Integer.valueOf(getAttributeString("timestamp")).intValue();
+		return getAttributeInteger("timestamp").intValue();
 	}
 	
 	public double getValueDouble() {

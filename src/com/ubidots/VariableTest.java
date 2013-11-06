@@ -88,7 +88,94 @@ public class VariableTest {
 		// Verify
 		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
 	}
+	
+	@Test
+	public void testSaveValuesIntCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
 
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		int[] values = {1, 2, 3};
+		long[] timestamps = {1383602207000l, 1383602208000l, 1383602209000l};
+		var.saveValues(values, timestamps);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), anyString());
+	}
+
+	@Test
+	public void testSaveValuesIntSendsAPIEndpointJSONList() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONList()))).thenReturn("{}");
+
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		int[] values = {1, 2, 3};
+		long[] timestamps = {1383602207000l, 1383602208000l, 1383602209000l};
+		var.saveValues(values, timestamps);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONList()));
+	}
+
+	@Test
+	public void testSaveValuesDoubleCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
+
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		double[] values = {1.0, 2.0, 3.0};
+		long[] timestamps = {1383602207000l, 1383602208000l, 1383602209000l};
+		var.saveValues(values, timestamps);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), anyString());
+	}
+
+	@Test
+	public void testSaveValuesDoubleSendsAPIEndpointJSONList() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONList()))).thenReturn("{}");
+
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		double[] values = {1.0, 2.0, 3.0};
+		long[] timestamps = {1383602207000l, 1383602208000l, 1383602209000l};
+		var.saveValues(values, timestamps);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONList()));
+	}
 	@Test
 	public void testRemoveCallsAPIEndpoint() {
 		ServerBridge bridge = mock(ServerBridge.class);

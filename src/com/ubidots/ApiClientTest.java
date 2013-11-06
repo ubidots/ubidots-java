@@ -1,7 +1,10 @@
 package com.ubidots;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
+
 import org.junit.Test;
 
 public class ApiClientTest {
@@ -112,5 +115,24 @@ public class ApiClientTest {
 		 
 		verify(bridge).get("datasources");
 		assertEquals(0, dataSources.length);
+	}
+	
+	@Test
+	public void testCreateDataSourceCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("datasources/"), anyString())).thenReturn("{"
+				+ "'id': 'abc',"
+				+ "'name': 'xyz'"
+				+ "}");
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		DataSource ds = api.createDataSource("klm");
+		
+		verify(bridge).post(eq("datasources/"), anyString());
+		
+		assertEquals("abc", ds.getId());
+		assertEquals("xyz", ds.getName());
 	}
 }

@@ -81,7 +81,7 @@ public class Variable extends ApiObject {
 		if (values == null || timestamps == null) {
 			throw new NullPointerException();
 		} else if (values.length != timestamps.length) {
-			throw new RuntimeException("values[] and timestamps[] "
+			throw new IndexOutOfBoundsException("values[] and timestamps[] "
 				+ "must have same length");
 		}
 

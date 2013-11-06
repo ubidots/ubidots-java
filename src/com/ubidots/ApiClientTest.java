@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
-
 import org.junit.Test;
 
-public class ApiClientTest {
 
+public class ApiClientTest {
+	
 	@Test
 	public void testGetVariablesEmptyList() {
 		ServerBridge bridge = mock(ServerBridge.class);
@@ -134,5 +134,17 @@ public class ApiClientTest {
 		
 		assertEquals("abc", ds.getId());
 		assertEquals("xyz", ds.getName());
+	}
+	
+	@Test
+	public void testCreateDataSourceSendsAPIEndpointJSONDict() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("datasources/"), argThat(new isJSONDict()))).thenReturn("{}");
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		DataSource ds = api.createDataSource("klm");
+		
+		verify(bridge).post(eq("datasources/"), argThat(new isJSONDict()));
 	}
 }

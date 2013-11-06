@@ -23,10 +23,9 @@ public class VariableTest {
 		raw.put("id", "a");
 		Variable var = new Variable(raw, api);
 		
-		// Call method to save a value
 		var.saveValue(999);
 		
-		// Verify API endpoint was requested in ServerBridge
+		// Verify
 		verify(bridge).post(eq("variables/a/values"), anyString());
 	}
 
@@ -44,10 +43,9 @@ public class VariableTest {
 		raw.put("id", "a");
 		Variable var = new Variable(raw, api);
 
-		// Call method to save a value
 		var.saveValue(0.0);
 
-		// Verify API endpoint was requested in ServerBridge
+		// Verify
 		verify(bridge).post(eq("variables/a/values"), anyString());
 	}
 	

@@ -2,10 +2,9 @@ package com.ubidots;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
 import java.util.*;
-
 import org.junit.Test;
+
 
 public class VariableTest {
 

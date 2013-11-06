@@ -284,4 +284,17 @@ public class VariableTest {
 		long[] timestamps = {1383602207000l};
 		variable.saveValues(values, timestamps);   // should throw
 	}
+	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void testSaveValuesDoubleExceptionDifferentArraySizes() {
+		ApiClient api = new ApiClient("abc");
+		
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable variable = new Variable(raw, api);
+		
+		double[] values = {1.0, 2.0};
+		long[] timestamps = {1383602207000l};
+		variable.saveValues(values, timestamps);   // should throw
+	}
 }

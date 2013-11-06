@@ -30,6 +30,26 @@ public class VariableTest {
 	}
 
 	@Test
+	public void testSaveValueIntSendsAPIEndpontJSONDict() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONDict()))).thenReturn("{}");
+		
+		// Create an ApiClient instance with mock server bridge
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		// Create a Variable instance with our patched ApiClient
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+		
+		var.saveValue(999);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
+	}
+	
+	@Test
 	public void testSaveValueDoubleCallsAPIEndpoint() {
 		ServerBridge bridge = mock(ServerBridge.class);
 		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
@@ -48,6 +68,27 @@ public class VariableTest {
 		// Verify
 		verify(bridge).post(eq("variables/a/values"), anyString());
 	}
+	
+	@Test
+	public void testSaveValueDoubleSendsAPIEndpointJSONDict() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONDict()))).thenReturn("{}");
+
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		// Create a Variable
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+
+		var.saveValue(0.0);
+
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
+	}
+
 	
 
 	@Test

@@ -14,11 +14,11 @@ public class VariableTest {
 		ServerBridge bridge = mock(ServerBridge.class);
 		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
 		
-		// Create an ApiClient instance with mock server bridge
+		// Create an ApiClient w/ mock
 		ApiClient api = new ApiClient("abc");
 		api.setServerBridge(bridge);
 		
-		// Create a Variable instance with our patched ApiClient
+		// Create a Variable
 		Map<String, Object> raw = new HashMap<String, Object>();
 		raw.put("id", "a");
 		Variable var = new Variable(raw, api);
@@ -34,11 +34,11 @@ public class VariableTest {
 		ServerBridge bridge = mock(ServerBridge.class);
 		when(bridge.post(eq("variables/a/values"), argThat(new isJSONDict()))).thenReturn("{}");
 		
-		// Create an ApiClient instance with mock server bridge
+		// Create an ApiClient w/ mock
 		ApiClient api = new ApiClient("abc");
 		api.setServerBridge(bridge);
 		
-		// Create a Variable instance with our patched ApiClient
+		// Create a Variable
 		Map<String, Object> raw = new HashMap<String, Object>();
 		raw.put("id", "a");
 		Variable var = new Variable(raw, api);
@@ -54,11 +54,11 @@ public class VariableTest {
 		ServerBridge bridge = mock(ServerBridge.class);
 		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
 
-		// Create an ApiClient instance with mock server bridge
+		// Create an ApiClient w/ mock
 		ApiClient api = new ApiClient("abc");
 		api.setServerBridge(bridge);
 
-		// Create a Variable instance with our patched ApiClient
+		// Create a Variable
 		Map<String, Object> raw = new HashMap<String, Object>();
 		raw.put("id", "a");
 		Variable var = new Variable(raw, api);

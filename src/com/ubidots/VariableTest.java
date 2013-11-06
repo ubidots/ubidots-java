@@ -89,8 +89,6 @@ public class VariableTest {
 		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
 	}
 
-	
-
 	@Test
 	public void testRemoveCallsAPIEndpoint() {
 		ServerBridge bridge = mock(ServerBridge.class);

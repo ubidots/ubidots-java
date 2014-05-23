@@ -4,7 +4,7 @@
 
 	<groupId>com.ubidots</groupId>
 	<artifactId>ubidots-java</artifactId>
-	<version>1.6.0</version>
+	<version>1.6.1-SNAPSHOT</version>
 	<name>ubidots-java</name>
 	<url>https://github.com/ubidots/ubidots-java</url>
 	<parent>

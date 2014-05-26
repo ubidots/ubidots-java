@@ -4,6 +4,18 @@ Ubidots Java API Client
 
 The Ubidots Java API Client makes calls to the `Ubidots API <http://things.ubidots.com/api>`_.  You can get the library from our `Github account <https://github.com/ubidots/ubidots-java>`_.
 
+Maven
+------
+
+Add this dependency to your project's POM:
+
+<dependency>
+  <groupId>com.ubidots</groupId>
+  <artifactId>ubidots-java</artifactId>
+  <version>1.6.0</version>
+</dependency> 
+
+
 Dependencies
 -----------------------------
 

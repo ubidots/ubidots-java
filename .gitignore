@@ -10,3 +10,6 @@ target
 # Emacs junk files
 *~
 [#]*[#]
+
+# Maven
+release.properties

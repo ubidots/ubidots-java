@@ -7,14 +7,13 @@ The Ubidots Java API Client makes calls to the `Ubidots API <http://things.ubido
 Maven
 ------
 
-Add this dependency to your project's POM:
-
+Add this dependency to your project's POM::
 
     <dependency>
       <groupId>com.ubidots</groupId>
       <artifactId>ubidots-java</artifactId>
-      <version>1.6.0</version>
-    </dependency> 
+      <version>1.6.2</version>
+    </dependency>
 
 
 Dependencies

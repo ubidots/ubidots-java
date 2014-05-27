@@ -9,11 +9,12 @@ Maven
 
 Add this dependency to your project's POM:
 
-<dependency>
-  <groupId>com.ubidots</groupId>
-  <artifactId>ubidots-java</artifactId>
-  <version>1.6.0</version>
-</dependency> 
+
+    <dependency>
+      <groupId>com.ubidots</groupId>
+      <artifactId>ubidots-java</artifactId>
+      <version>1.6.0</version>
+    </dependency> 
 
 
 Dependencies
@@ -33,8 +34,8 @@ For the latest version of the dependencies, follow the above links. To download 
 .. code-block:: bash
 
     $ wget http://google-gson.googlecode.com/files/google-gson-2.2.4-release.zip
-    $ wget http://apache.claz.org//httpcomponents/httpcore/binary/httpcomponents-core-4.3-bin.tar.gz
-    $ wget http://apache.claz.org//httpcomponents/httpclient/binary/httpcomponents-client-4.3-bin.tar.gz
+    $ wget http://apache.claz.org//httpcomponents/httpcore/binary/httpcomponents-core-4.3.1-bin.tar.gz
+    $ wget http://apache.claz.org//httpcomponents/httpclient/binary/httpcomponents-client-4.3.3-bin.tar.gz
     $ wget http://mirror.sdunix.com/apache//commons/logging/binaries/commons-logging-1.1.3-bin.tar.gz
 
 

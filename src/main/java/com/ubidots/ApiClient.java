@@ -87,6 +87,18 @@ public class ApiClient {
 		return variables;
 	}
 
+	public Variable getVariable(String id) {
+		String json = bridge.get("variables/" + id);
+		
+		Gson gson = new Gson();
+		Map<String, Object> rawVariable = (Map<String, Object>) gson.fromJson(json, Map.class);
+		
+		if (rawVariable.containsKey("detail"))
+			return null;
+		else
+			return new Variable(rawVariable, this);
+	}
+
 	// For testing
 	void setServerBridge(ServerBridge bridge) {
 		this.bridge = bridge;

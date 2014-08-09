@@ -80,7 +80,6 @@ public class ServerBridge {
 			}
 			
 			HttpResponse resp = client.execute(post);
-			resp.getEntity().getContent();
 			
 			BufferedReader rd = new BufferedReader(
                     new InputStreamReader(resp.getEntity().getContent()));

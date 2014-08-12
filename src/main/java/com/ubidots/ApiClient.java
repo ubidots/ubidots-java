@@ -18,10 +18,17 @@ public class ApiClient {
 		bridge = new ServerBridge(apiKey, baseUrl);
 	}
 
+    public ApiClient() {}
+
 	ServerBridge getServerBridge() {
 		return bridge;
 	}
-	
+
+    public ApiClient fromToken(String token) {
+        bridge = new ServerBridge(token, true);
+        return this;
+    }
+
 	public DataSource[] getDataSources() {
 		String json = bridge.get("datasources");
 		

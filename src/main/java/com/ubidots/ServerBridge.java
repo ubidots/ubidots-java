@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 /**
  * A Bridge between the Server and API objects.
  * 
- * Responsibilities: Make petitions to he browser with the right headers
+ * Responsibilities: Make petitions to the browser with the right headers
  * and arguments.
  * @author Ubidots
  */
@@ -51,6 +51,15 @@ public class ServerBridge {
 		
 		initialize();
 	}
+
+    ServerBridge(String token, boolean isToken) {
+        this.token = token;
+        baseUrl = DEFAULT_BASE_URL;
+        apiKey = null;
+
+        tokenHeader = new HashMap<String, String>();
+        tokenHeader.put("X-AUTH-TOKEN", token);
+    }
 	
 	public void initialize() {
 		recieveToken();

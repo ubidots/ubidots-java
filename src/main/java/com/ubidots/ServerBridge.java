@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -27,7 +29,7 @@ import com.google.gson.Gson;
 public class ServerBridge {
 	
 	/* Final static variables */
-	public static final String DEFAULT_BASE_URL = "http://app.ubidots.com/api/";
+	public static final String DEFAULT_BASE_URL = "http://app.ubidots.com/api/v1.6/";
 	
 	/* Instance variables */
 	private String baseUrl;
@@ -159,6 +161,13 @@ public class ServerBridge {
 			}
 
 			response = result.toString();
+
+            // We just need the result field
+            JsonParser parser = new JsonParser();
+            JsonObject jsonObject = parser.parse(response).getAsJsonObject();
+            if (jsonObject.has("results")) {
+                response = jsonObject.get("results").toString();
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

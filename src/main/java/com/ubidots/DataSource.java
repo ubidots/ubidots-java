@@ -40,14 +40,14 @@ public class DataSource extends ApiObject {
 		return variables;
 	}
 	
-	public Variable createVariable(String name, String unit, String icon) {
-		return createVariable(name, unit, icon, null, null, null);
+	public Variable createVariable(String name, String unit) {
+		return createVariable(name, unit, null, null, null);
 	}
 	
-	public Variable createVariable(String name, String unit, String icon,
+	public Variable createVariable(String name, String unit,
 			String description, Map<String, String> properties,
 			String[] tags) {
-		if (name == null || unit == null || icon == null) {
+		if (name == null || unit == null) {
 			throw new NullPointerException();
 		}
 
@@ -55,7 +55,6 @@ public class DataSource extends ApiObject {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("name", name);
 		data.put("unit", unit);
-		data.put("icon", icon);
 
 		if (description != null)
 			data.put("description", description);

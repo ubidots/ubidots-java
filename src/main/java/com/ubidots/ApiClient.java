@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class ApiClient {
 	
@@ -18,10 +20,17 @@ public class ApiClient {
 		bridge = new ServerBridge(apiKey, baseUrl);
 	}
 
+    public ApiClient() {}
+
 	ServerBridge getServerBridge() {
 		return bridge;
 	}
-	
+
+    public ApiClient fromToken(String token) {
+        bridge = new ServerBridge(token, true);
+        return this;
+    }
+
 	public DataSource[] getDataSources() {
 		String json = bridge.get("datasources");
 		

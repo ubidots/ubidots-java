@@ -90,8 +90,8 @@ public class ApiClientTest {
 				+ "'owner': 'http://things.ubidots.com/api/v1.5/users/180', "
 				+ "'parent': null,"
 				+ "'tags': [], "
-				+ "'url': 'http://things.ubidots.com/api/v1.5/datasources/a', "
-				+ "'variables_url': 'http://things.ubidots.com/api/v1.5/datasources/a/variables' "
+				+ "'url': 'http://things.ubidots.com/api/v1.6/datasources/a', "
+				+ "'variables_url': 'http://things.ubidots.com/api/v1.6/datasources/a/variables' "
 				+ "}");
 
 		ApiClient api = new ApiClient("abc");

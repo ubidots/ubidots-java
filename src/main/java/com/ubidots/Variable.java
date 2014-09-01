@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Variable extends ApiObject {
 
@@ -36,7 +38,7 @@ public class Variable extends ApiObject {
 		List<Map<String, Object>> rawValues = gson.fromJson(json, List.class);
 		
 		Value[] values = new Value[rawValues.size()];
-		
+
 		for (int i = 0; i < rawValues.size(); i++) {
 			values[i] = new Value(rawValues.get(i), api);
 		}
@@ -64,8 +66,33 @@ public class Variable extends ApiObject {
 		String json = gson.toJson(map);
 		
 		bridge.post("variables/" + getAttributeString("id") + "/values", json);
-
 	}
+
+    public void saveValue(int value, Map<String, Object> context) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        map.put("value", new Integer(value));
+        map.put("context", context);
+        map.put("timestamp", new Long(getTimestamp()));
+
+        Gson gson = new Gson();
+        String json = gson.toJson(map);
+
+        bridge.post("variables/" + getAttributeString("id") + "/values", json);
+    }
+
+    public void saveValue(double value, Map<String, Object> context) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("value", new Double(value));
+        map.put("context", context);
+        map.put("timestamp", new Long(getTimestamp()));
+
+        Gson gson = new Gson();
+        String json = gson.toJson(map);
+
+        bridge.post("variables/" + getAttributeString("id") + "/values", json);
+    }
 	
 	public void saveValues(int values[], long timestamps[]) {
 		double valuesDouble[] = new double[values.length];

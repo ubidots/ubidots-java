@@ -175,6 +175,76 @@ public class VariableTest {
 		// Verify
 		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONList()));
 	}
+
+	@Test
+	public void testSaveValueIntContextCallsAPIEndpoint() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), anyString())).thenReturn("{}");
+		
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		// Create a Variable
+		Map<String, Object> context = new HashMap<String, Object>();
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+		
+		context.put("lat", "0.0");
+		context.put("lng", "0.0");
+		var.saveValue(999, context);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), anyString());
+	}
+
+	@Test
+	public void testSaveValueIntContextCallsAPIEndpointJSONDict() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONDict()))).thenReturn("{}");
+		
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		// Create a Variable
+		Map<String, Object> context = new HashMap<String, Object>();
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+		
+		context.put("lat", "0.0");
+		context.put("lng", "0.0");
+		var.saveValue(999, context);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
+	}
+
+	@Test
+	public void testSaveValueDoubleContextCallsAPIEndpointJSONList() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONList()))).thenReturn("{}");
+		
+		// Create an ApiClient w/ mock
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+		
+		// Create a Variable
+		Map<String, Object> context = new HashMap<String, Object>();
+		Map<String, Object> raw = new HashMap<String, Object>();
+		raw.put("id", "a");
+		Variable var = new Variable(raw, api);
+		
+		context.put("lat", "0.0");
+		context.put("lng", "0.0");
+		var.saveValue(0.0, context);
+		
+		// Verify
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONList()));
+	}
+
 	@Test
 	public void testRemoveCallsAPIEndpoint() {
 		ServerBridge bridge = mock(ServerBridge.class);
@@ -187,7 +257,6 @@ public class VariableTest {
 		raw.put("id", "a");
 		raw.put("name", "My Var");
 		raw.put("unit", "hPa");
-		raw.put("icon", "foobar");
 
 		Variable variable = new Variable(raw, api);
 		variable.remove();
@@ -201,7 +270,6 @@ public class VariableTest {
 		raw.put("id", "a");
 		raw.put("name", "My Var");
 		raw.put("unit", "hPa");
-		raw.put("icon", "foobar");
 		
 		Variable variable = new Variable(raw, mock(ApiClient.class));
 		
@@ -223,7 +291,6 @@ public class VariableTest {
 		raw.put("id", "a");
 		raw.put("name", "My Var");
 		raw.put("unit", "hPa");
-		raw.put("icon", "foobar");
 
 		Variable variable = new Variable(raw, api);
 		Value[] values = variable.getValues();
@@ -247,7 +314,6 @@ public class VariableTest {
 		raw.put("id", "a");
 		raw.put("name", "My Var");
 		raw.put("unit", "hPa");
-		raw.put("icon", "foobar");
 		
 		Variable variable = new Variable(raw, api);
 		Value[] values = variable.getValues();

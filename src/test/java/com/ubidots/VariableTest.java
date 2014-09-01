@@ -225,7 +225,7 @@ public class VariableTest {
 	@Test
 	public void testSaveValueDoubleContextCallsAPIEndpointJSONList() {
 		ServerBridge bridge = mock(ServerBridge.class);
-		when(bridge.post(eq("variables/a/values"), argThat(new isJSONList()))).thenReturn("{}");
+		when(bridge.post(eq("variables/a/values"), argThat(new isJSONDict()))).thenReturn("{}");
 		
 		// Create an ApiClient w/ mock
 		ApiClient api = new ApiClient("abc");
@@ -242,7 +242,7 @@ public class VariableTest {
 		var.saveValue(0.0, context);
 		
 		// Verify
-		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONList()));
+		verify(bridge).post(eq("variables/a/values"), argThat(new isJSONDict()));
 	}
 
 	@Test

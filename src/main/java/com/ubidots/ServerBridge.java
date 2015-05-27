@@ -54,15 +54,15 @@ public class ServerBridge {
 		initialize();
 	}
 
-    ServerBridge(String token, boolean isToken) {
-        this.token = token;
-        baseUrl = DEFAULT_BASE_URL;
-        apiKey = null;
+	ServerBridge(String token, boolean isToken) {
+		this.token = token;
+		baseUrl = DEFAULT_BASE_URL;
+		apiKey = null;
 
-        tokenHeader = new HashMap<String, String>();
-        tokenHeader.put("X-AUTH-TOKEN", token);
-    }
-	
+		tokenHeader = new HashMap<String, String>();
+		tokenHeader.put("X-AUTH-TOKEN", token);
+	}
+
 	public void initialize() {
 		recieveToken();
 	}
@@ -93,7 +93,7 @@ public class ServerBridge {
 			HttpResponse resp = client.execute(post);
 			
 			BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(resp.getEntity().getContent()));
+				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
 			String line = "";
@@ -151,7 +151,7 @@ public class ServerBridge {
 			HttpResponse resp = client.execute(get);
 			
 			BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(resp.getEntity().getContent()));
+				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
 			String line = "";
@@ -162,12 +162,12 @@ public class ServerBridge {
 
 			response = result.toString();
 
-            // We just need the result field
-            JsonParser parser = new JsonParser();
-            JsonObject jsonObject = parser.parse(response).getAsJsonObject();
-            if (jsonObject.has("results")) {
-                response = jsonObject.get("results").toString();
-            }
+			// We just need the result field
+			JsonParser parser = new JsonParser();
+			JsonObject jsonObject = parser.parse(response).getAsJsonObject();
+			if (jsonObject.has("results")) {
+				response = jsonObject.get("results").toString();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -201,7 +201,7 @@ public class ServerBridge {
 			HttpResponse resp = client.execute(post);
 			
 			BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(resp.getEntity().getContent()));
+				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
 			String line = "";
@@ -245,7 +245,7 @@ public class ServerBridge {
 				response = "";
 			} else {
 				BufferedReader rd = new BufferedReader(
-	                    new InputStreamReader(resp.getEntity().getContent()));
+					new InputStreamReader(resp.getEntity().getContent()));
 	
 				StringBuffer result = new StringBuffer();
 				String line = "";

@@ -68,31 +68,31 @@ public class Variable extends ApiObject {
 		bridge.post("variables/" + getAttributeString("id") + "/values", json);
 	}
 
-    public void saveValue(int value, Map<String, Object> context) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        map.put("value", new Integer(value));
-        map.put("context", context);
-        map.put("timestamp", new Long(getTimestamp()));
+	public void saveValue(int value, Map<String, Object> context) {
+		Map<String, Object> map = new HashMap<String, Object>();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(map);
+		map.put("value", new Integer(value));
+		map.put("context", context);
+		map.put("timestamp", new Long(getTimestamp()));
 
-        bridge.post("variables/" + getAttributeString("id") + "/values", json);
-    }
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
 
-    public void saveValue(double value, Map<String, Object> context) {
-        Map<String, Object> map = new HashMap<String, Object>();
+		bridge.post("variables/" + getAttributeString("id") + "/values", json);
+	}
 
-        map.put("value", new Double(value));
-        map.put("context", context);
-        map.put("timestamp", new Long(getTimestamp()));
+	public void saveValue(double value, Map<String, Object> context) {
+		Map<String, Object> map = new HashMap<String, Object>();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(map);
+		map.put("value", new Double(value));
+		map.put("context", context);
+		map.put("timestamp", new Long(getTimestamp()));
 
-        bridge.post("variables/" + getAttributeString("id") + "/values", json);
-    }
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+
+		bridge.post("variables/" + getAttributeString("id") + "/values", json);
+	}
 	
 	public void saveValues(int values[], long timestamps[]) {
 		double valuesDouble[] = new double[values.length];

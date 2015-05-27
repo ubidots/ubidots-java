@@ -26,10 +26,10 @@ public class ApiClient {
 		return bridge;
 	}
 
-    public ApiClient fromToken(String token) {
-        bridge = new ServerBridge(token, true);
-        return this;
-    }
+	public ApiClient fromToken(String token) {
+		bridge = new ServerBridge(token, true);
+		return this;
+	}
 
 	public DataSource[] getDataSources() {
 		String json = bridge.get("datasources");

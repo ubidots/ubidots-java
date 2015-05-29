@@ -176,3 +176,25 @@ As with data sources, use your variable's id to retrieve the details about a var
 .. code-block:: java
 
     Variable mySpecificVariable = api.getVariable("56799cf1231b28459f976417");
+
+
+Getting basic statistic data
+----------------------------
+
+You can use the Ubidots statistics endpoint by calling the specific method:
+
+* *getMean()*
+* *getVariance()*
+* *getMin()*
+* *getMax()*
+* *getCount()*
+* *getSum()*
+
+This methods are present in your variable instance.
+
+Usage example
+
+.. code-block:: java
+
+    Variable mySpecificVariable = api.getVariable("56799cf1231b28459f976417");
+    double mean = mySpecificVariable.getMean();

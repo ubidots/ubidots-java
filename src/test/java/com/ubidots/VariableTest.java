@@ -336,6 +336,25 @@ public class VariableTest {
 		assertEquals(1383602208000l, values[1].getTimestamp());
 		assertEquals(1383602209000l, values[2].getTimestamp());
 	}
+
+	@Test
+	public void testGetStatistics() {
+		ServerBridge bridge = mock(ServerBridge.class);
+		when(bridge.get("variables/a/statistics/mean/0/1383602209000")).thenReturn("{'mean': 0.0}");
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		Map<String, Object> raw = new HashMap<>();
+		raw.put("id", "a");
+		raw.put("name", "My var");
+		raw.put("unit", "hPa");
+
+		Variable variable = new Variable(raw, api);
+		variable.getMean(0, 1383602209000L);
+
+		verify(bridge).get("variables/a/statistics/mean/0/1383602209000");
+	}
 	
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void testSaveValuesIntExceptionDifferentArraySizes() {

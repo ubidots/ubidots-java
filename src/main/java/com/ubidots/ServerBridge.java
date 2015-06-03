@@ -29,7 +29,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 public class ServerBridge {
 	
 	/* Final static variables */
-	public static final String DEFAULT_BASE_URL = "http://app.ubidots.com/api/v1.6/";
+	public static final String DEFAULT_BASE_URL = "https://things.ubidots.com/api/v1.6/";
 	
 	/* Instance variables */
 	private String baseUrl;

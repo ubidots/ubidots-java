@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.ubidots.Value.StatisticsFigures;
 
 public class Variable extends ApiObject {
-
 	Variable(Map<String, Object> raw, ApiClient api) {
 		super(raw, api);
 	}
@@ -42,7 +40,7 @@ public class Variable extends ApiObject {
 		for (int i = 0; i < rawValues.size(); i++) {
 			values[i] = new Value(rawValues.get(i), api);
 		}
-		
+
 		return values;
 	}
 	
@@ -125,6 +123,64 @@ public class Variable extends ApiObject {
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		bridge.post("variables/" + getId() + "/values", json);
+	}
+
+	public double getMean() {
+		return getMean(0L, getTimestamp());
+	}
+
+	public double getMean(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.MEAN , startTime, endTime);
+	}
+
+	public double getVariance() {
+		return getVariance(0L, getTimestamp());
+	}
+
+	public double getVariance(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.VARIANCE, startTime, endTime);
+	}
+
+	public double getMin() {
+		return getMin(0L, getTimestamp());
+	}
+
+	public double getMin(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.MIN, startTime, endTime);
+	}
+
+	public double getMax() {
+		return getMax(0L, getTimestamp());
+	}
+
+	public double getMax(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.MAX, startTime, endTime);
+	}
+
+	public double getCount() {
+		return getCount(0L, getTimestamp());
+	}
+
+	public double getCount(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.COUNT, startTime, endTime);
+	}
+
+	public double getSum() {
+		return getSum(0L, getTimestamp());
+	}
+
+	public double getSum(long startTime, long endTime) {
+		return getStatistics(StatisticsFigures.SUM, startTime, endTime);
+	}
+
+	private double getStatistics(String figure, long startTime, long endTime) {
+		String json = bridge.get("variables/" + getId() + "/statistics/" +
+				 figure + "/" + startTime + "/" + endTime);
+
+		Gson gson = new Gson();
+		Map<String, Object> rawValue = gson.fromJson(json, Map.class);
+
+		return (double) rawValue.get(figure);
 	}
 
 	private long getTimestamp() {

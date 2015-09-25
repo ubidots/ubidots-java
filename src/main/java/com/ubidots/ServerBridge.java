@@ -8,14 +8,14 @@ import java.util.Map;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
 
 import com.google.gson.Gson;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 
 /**
@@ -25,11 +25,11 @@ import com.google.gson.Gson;
  * and arguments.
  * @author Ubidots
  */
-@SuppressWarnings("deprecation")
+
 public class ServerBridge {
 	
 	/* Final static variables */
-	public static final String DEFAULT_BASE_URL = "http://app.ubidots.com/api/v1.6/";
+	public static final String DEFAULT_BASE_URL = "https://things.ubidots.com/api/v1.6/";
 	
 	/* Instance variables */
 	private String baseUrl;
@@ -48,7 +48,7 @@ public class ServerBridge {
 		this.apiKey = apiKey;
 		token = null;
 
-		apiKeyHeader = new HashMap<String, String>();
+		apiKeyHeader = new HashMap<>();
 		apiKeyHeader.put("X-UBIDOTS-APIKEY", this.apiKey);
 		
 		initialize();
@@ -59,7 +59,7 @@ public class ServerBridge {
 		baseUrl = DEFAULT_BASE_URL;
 		apiKey = null;
 
-		tokenHeader = new HashMap<String, String>();
+		tokenHeader = new HashMap<>();
 		tokenHeader.put("X-AUTH-TOKEN", token);
 	}
 
@@ -71,7 +71,7 @@ public class ServerBridge {
 		Gson gson = new Gson();
 		token = (String) gson.fromJson(postWithApiKey("auth/token"), Map.class).get("token");
 	
-		tokenHeader = new HashMap<String, String>();
+		tokenHeader = new HashMap<>();
 		tokenHeader.put("X-AUTH-TOKEN", token);
 	}
 	
@@ -79,11 +79,9 @@ public class ServerBridge {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(apiKeyHeader);		
 		
-		try {
+		try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 			String url = baseUrl + path;
-			
-			@SuppressWarnings("resource")
-			HttpClient client = new DefaultHttpClient();
+
 			HttpPost post = new HttpPost(url);
 			
 			for (String name : headers.keySet()) {
@@ -96,7 +94,7 @@ public class ServerBridge {
 				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
-			String line = "";
+			String line;
 			
 			while ((line = rd.readLine()) != null) {
 				result.append(line);
@@ -111,7 +109,7 @@ public class ServerBridge {
 	}
 	
 	private Map<String, String> getCustomHeaders() {
-		Map<String, String> customHeaders = new HashMap<String, String>();
+		Map<String, String> customHeaders = new HashMap<>();
 		
 		customHeaders.put("content-type", "application/json");
 		
@@ -119,7 +117,7 @@ public class ServerBridge {
 	}
 	
 	private Map<String, String> prepareHeaders(Map<String, String> arg) {
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 		
 		headers.putAll(getCustomHeaders());
 		headers.putAll(arg);
@@ -135,13 +133,11 @@ public class ServerBridge {
 	 */
 	String get(String path) {
 		String response = null; // return variable
-		Map<String, String> headers = prepareHeaders(tokenHeader);		
-		
-		try {
+		Map<String, String> headers = prepareHeaders(tokenHeader);
+
+		try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 			String url = baseUrl + path;
-			
-			@SuppressWarnings("resource")
-			HttpClient client = new DefaultHttpClient();
+
 			HttpGet get = new HttpGet(url);
 			
 			for (String name : headers.keySet()) {
@@ -154,7 +150,7 @@ public class ServerBridge {
 				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
-			String line = "";
+			String line;
 			
 			while ((line = rd.readLine()) != null) {
 				result.append(line);
@@ -170,7 +166,7 @@ public class ServerBridge {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 		
 		return response;
 	}
@@ -184,13 +180,11 @@ public class ServerBridge {
 	 */
 	String post(String path, String json) {
 		String response = null; // return variable
-		Map<String, String> headers = prepareHeaders(tokenHeader);		
-		
-		try {
+		Map<String, String> headers = prepareHeaders(tokenHeader);
+
+		try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 			String url = baseUrl + path;
-			
-			@SuppressWarnings("resource")
-			HttpClient client = new DefaultHttpClient();
+
 			HttpPost post = new HttpPost(url);
 			
 			for (String name : headers.keySet()) {
@@ -204,7 +198,7 @@ public class ServerBridge {
 				new InputStreamReader(resp.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
-			String line = "";
+			String line;
 			
 			while ((line = rd.readLine()) != null) {
 				result.append(line);
@@ -226,13 +220,11 @@ public class ServerBridge {
 	 */
 	String delete(String path) {
 		String response = null; // return variable
-		Map<String, String> headers = prepareHeaders(tokenHeader);		
-		
-		try {
+		Map<String, String> headers = prepareHeaders(tokenHeader);
+
+		try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 			String url = baseUrl + path;
-			
-			@SuppressWarnings("resource")
-			HttpClient client = new DefaultHttpClient();
+
 			HttpDelete delete = new HttpDelete(url);
 			
 			for (String name : headers.keySet()) {
@@ -248,7 +240,7 @@ public class ServerBridge {
 					new InputStreamReader(resp.getEntity().getContent()));
 	
 				StringBuffer result = new StringBuffer();
-				String line = "";
+				String line;
 				
 				while ((line = rd.readLine()) != null) {
 					result.append(line);

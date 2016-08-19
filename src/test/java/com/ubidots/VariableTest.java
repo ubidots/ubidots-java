@@ -389,13 +389,62 @@ public class VariableTest {
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void testSaveValuesDoubleExceptionDifferentArraySizes() {
 		ApiClient api = new ApiClient("abc");
-		
-		Map<String, Object> raw  = new HashMap<String, Object>();
+
+		Map<String, Object> raw = new HashMap<String, Object>();
 		raw.put("id", "a");
 		Variable variable = new Variable(raw, api);
-		
+
 		double[] values = {1.0, 2.0};
 		long[] timestamps = {1383602207000l};
 		variable.saveValues(values, timestamps);   // should throw
+	}
+
+	public void testGetValuesWithStaticPageSize()  {
+		ServerBridge bridge = mock(ServerBridge.class);
+		Map<String, String> params = new HashMap<>();
+		int page_size;
+
+		params.put("page_size", "90");
+		page_size = Integer.parseInt(params.get("page_size"));
+		when(bridge.get("variables/a/values", params)).thenReturn(valueGenerator(page_size));
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "My Var");
+		raw.put("unit", "hPa");
+
+		Variable variable = new Variable(raw, api);
+		Value[] values = variable.getValues(params);
+
+		assertEquals(values.length, page_size);
+		assertEquals(values[values.length - 1], page_size - 1);
+	}
+
+	public void testGetValuesWithRandomPageSize()  {
+		ServerBridge bridge = mock(ServerBridge.class);
+		Map<String, String> params = new HashMap<>();
+		Random random = new Random();
+		int page_size;
+
+		params.put("page_size", String.valueOf(random.nextInt(100)));
+		page_size = Integer.parseInt(params.get("page_size"));
+		when(bridge.get("variables/a/values", params)).thenReturn(valueGenerator(page_size));
+
+		ApiClient api = new ApiClient("abc");
+		api.setServerBridge(bridge);
+
+		Map<String, Object> raw  = new HashMap<String, Object>();
+		raw.put("id", "a");
+		raw.put("name", "My Var");
+		raw.put("unit", "hPa");
+
+		Variable variable = new Variable(raw, api);
+		Value[] values = variable.getValues(params);
+
+		assertEquals(values.length, page_size);
+		assertEquals(values[values.length - 1], page_size - 1);
 	}
 }

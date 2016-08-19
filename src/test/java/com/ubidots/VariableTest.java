@@ -7,6 +7,23 @@ import org.junit.Test;
 
 
 public class VariableTest {
+	private String valueGenerator(int page_size) {
+		StringBuilder valuesGenerated = new StringBuilder("[");
+		Random random = new Random();
+		long initialTimestamp = 1234567890987L;
+		int randomNumber;
+		for (int i = 0; i < page_size; i++) {
+			randomNumber = random.nextInt();
+			valuesGenerated.append(
+					String.format("{'id': '%d', 'value': %d, 'timestamp': %d}", i, randomNumber, initialTimestamp)
+			);
+			initialTimestamp++;
+		}
+
+		valuesGenerated.append("]");
+
+		return valuesGenerated.toString();
+	}
 
 	@Test
 	public void testSaveValueIntCallsAPIEndpoint() {

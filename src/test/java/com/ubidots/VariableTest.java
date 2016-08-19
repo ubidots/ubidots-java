@@ -282,7 +282,7 @@ public class VariableTest {
 	@Test
 	public void testGetValuesEmptyList() {
 		ServerBridge bridge = mock(ServerBridge.class);
-		when(bridge.get("variables/a/values")).thenReturn("[]");
+		when(bridge.get("variables/a/values", null)).thenReturn("[]");
 
 		ApiClient api = new ApiClient("abc");
 		api.setServerBridge(bridge);
@@ -301,7 +301,7 @@ public class VariableTest {
 	@Test
 	public void testGetValuesListSizeThree() {
 		ServerBridge bridge = mock(ServerBridge.class);
-		when(bridge.get("variables/a/values")).thenReturn("["
+		when(bridge.get("variables/a/values", null)).thenReturn("["
 				+ "{'id': 'xa', 'value': 5, 'timestamp': 1383602207000},"
 				+ "{'id': 'yb', 'value': 2, 'timestamp': 1383602208000},"
 				+ "{'id': 'zc', 'value': 7, 'timestamp': 1383602209000}"
@@ -319,7 +319,7 @@ public class VariableTest {
 		Value[] values = variable.getValues();
 		
 		assertEquals(3, values.length);
-		verify(bridge).get("variables/a/values");
+		verify(bridge).get("variables/a/values", null);
 		
 		// Check ids
 		assertEquals("xa", values[0].getId());

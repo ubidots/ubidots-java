@@ -28,9 +28,13 @@ public class Variable extends ApiObject {
 	public void remove() {
 		bridge.delete("variables/" + getAttributeString("id"));
 	}
-	
+
 	public Value[] getValues() {
-		String json = bridge.get("variables/" + getAttributeString("id") + "/values");
+		return getValues(null);
+	}
+
+	public Value[] getValues(Map<String, String> customParameters) {
+		String json = bridge.get("variables/" + getAttributeString("id") + "/values", customParameters);
 		
 		Gson gson = new Gson();
 		List<Map<String, Object>> rawValues = gson.fromJson(json, List.class);

@@ -3,19 +3,24 @@ package com.ubidots;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 import com.google.gson.Gson;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
 
 
 /**
@@ -126,14 +131,37 @@ public class ServerBridge {
 	}
 
 	/**
+	 * Created to mantain compatibility with previous version
 	 * Perform a GET request on the API with a given path
-	 * @param path Path to append to the base URL.
+	 * @param path Path to append to the base URL
 	 * @return Response from the API. The API sends back data encoded in JSON.
 	 * In the event of an error, will return null.
 	 */
 	String get(String path) {
+		return get(path, null);
+	}
+
+	/**
+	 * Perform a GET request on the API with a given path
+	 * @param path Path to append to the base URL.
+	 * @param customParams Custom parameters added by the user
+	 * @return Response from the API. The API sends back data encoded in JSON.
+	 * In the event of an error, will return null.
+	 */
+	String get(String path, Map<String, String> customParams) {
 		String response = null; // return variable
 		Map<String, String> headers = prepareHeaders(tokenHeader);
+
+		if (customParams != null) {
+			List<NameValuePair> params = new LinkedList<>();
+
+			for (Map.Entry<String, String> entry : customParams.entrySet()) {
+				params.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+
+			}
+			path.concat("?");
+			path.concat(URLEncodedUtils.format(params, "utf8"));
+		}
 
 		try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
 			String url = baseUrl + path;
